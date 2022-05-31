@@ -4,6 +4,7 @@ from flask_bootstrap import Bootstrap
 from config import S3_BUCKET, S3_KEY, S3_SECRET_ACCESS_KEY
 from filters import datetimeformat, file_type
 from flask import send_from_directory
+import os
 from resources import get_bucket, get_buckets_list, upload_file, \
     create_folder,\
         delete_folder, \
