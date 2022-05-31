@@ -19,7 +19,8 @@ app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['file_type'] = file_type
 
 @app.route('/favicon.ico') 
-def favicon(): 
+def favicon():
+    import os
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon') 
     
 @app.route('/', methods=['GET', 'POST'])
