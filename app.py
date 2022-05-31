@@ -1,7 +1,9 @@
-from Flask import Flask, render_template, request, redirect, url_for, Flask, \
+from flask import Flask, render_template, request, redirect, url_for, Flask, \
     Response, session
 from flask_bootstrap import Bootstrap
+from config import S3_BUCKET, S3_KEY, S3_SECRET_ACCESS_KEY
 from filters import datetimeformat, file_type
+from flask import send_from_directory
 from resources import get_bucket, get_buckets_list, upload_file, \
     create_folder,\
         delete_folder, \
@@ -15,7 +17,10 @@ app.secret_key = 'secret'
 app.jinja_env.filters['datetimeformat'] = datetimeformat
 app.jinja_env.filters['file_type'] = file_type
 
-
+@app.route('/favicon.ico') 
+def favicon(): 
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon') 
+    
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
